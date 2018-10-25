@@ -1,0 +1,38 @@
+<odoo>
+    <data noupdate="1">
+         <record id="cash_account_type" model="account.account.type">
+            <field name="name">cash</field>
+            <field name="type">liquidity</field>
+        </record>
+        <record id="cash_account" model="account.account">
+            <field name="name">Cash account</field>
+            <field name="code">CASH</field>
+            <field name="user_type_id" ref="cash_account_type" />
+            <field name="reconcile">True</field>
+        </record>
+        <record id="cash_journal" model="account.journal">
+            <field name="name">Cash journal</field>
+            <field name="code">CASH</field>
+            <field name="default_credit_account_id" ref="cash_account" />
+            <field name="default_debit_account_id" ref="cash_account" />
+            <field name="type">cash</field>
+        </record>
+        <record id="sales_acc_type" model="account.account.type">
+            <field name="name">revenue</field>
+            <field name="type">receivable</field>
+        </record>
+        <record id="sales_account" model="account.account">
+            <field name="name">Revenue account</field>
+            <field name="code">SALES</field>
+            <field name="user_type_id" ref="sales_acc_type" />
+            <field name="reconcile">True</field>
+        </record>
+        <record id="sales_journal" model="account.journal">
+            <field name="name">Sales journal</field>
+            <field name="code">SALES</field>
+            <field name="default_credit_account_id" ref="sales_account" />
+            <field name="default_debit_account_id" ref="sales_account" />
+            <field name="type">sale</field>
+        </record>
+    </data>
+</odoo>

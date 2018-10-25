@@ -1,0 +1,6 @@
+<odoo>
+    <data noupdate="1">
+        <function model="opencourse.bootstrap" name="install"/>
+    </data>
+
+</odoo>

@@ -1,0 +1,125 @@
+# -*- coding: utf-8 -*-
+
+from odoo import models, fields, api
+from string import ascii_uppercase, digits
+import random
+import time
+from datetime import datetime
+from odoo.exceptions import ValidationError
+
+
+class Contact(models.Model):
+    _name = 'crm.lead'
+    _inherit = 'crm.lead'
+
+    @api.model
+    def create(self, vals):
+        leads = []
+        if 'email_from' in vals and vals['email_from']:
+            leads = self.env['crm.lead'].search([('email_from', '=', vals['email_from'])])
+        if len(leads) > 0:
+            lead = leads[0]
+        else:
+            lead = super(Contact, self).create(vals)
+        return lead
+
+class Partner(models.Model):
+    _name = 'res.partner'
+    _inherit = 'res.partner'
+
+    mobile = fields.Char(string="Mobile")
+    position = fields.Char(string="Position")
+    intro = fields.Text(string="Introduction")
+    fb_link = fields.Text(string="Facebook link")
+    tw_link = fields.Text(string="Twitter link")
+    ln_link = fields.Text(string="LinkedIn link")
+    yt_link = fields.Text(string="Youtube link")
+    gl_link = fields.Text(string="Google link")
+    social_id = fields.Char(string="Social ID")
+    hotline = fields.Char(string="Hotline")
+    referal_code = fields.Char(string="Referal code")
+    dob = fields.Datetime(string="Date of birth")
+    gender = fields.Selection(
+        [('male', 'Male'), ('female', 'Female'), ('other', 'Other')])
+
+
+class User(models.Model):
+    _name = 'res.users'
+    _inherit = 'res.users'
+
+    password = fields.Char(default='', invisible=False, copy=False)
+    gender = fields.Selection(related='partner_id.gender', store=True)
+    social_id = fields.Char(related="partner_id.social_id", string="Social ID", store=True)
+    is_admin = fields.Boolean(default=False, string="Is admin")
+    group_id = fields.Many2one('res.groups', string='Group')
+    group_code = fields.Char(related="group_id.code", string="Code", readonl=True)
+    group_name = fields.Char(related="group_id.name", string="Name", readonly=True)
+    permission_id = fields.Many2one('opencourse.permission', string='Permission')
+    referal_code = fields.Char(string="Referal code", related="partner_id.referal_code")
+    street = fields.Char(related="partner_id.street", string="Address", inherited=True)
+    mobile = fields.Char(related="partner_id.mobile", string="Mobile", inherited=True)
+    intro = fields.Text(related="partner_id.intro", string="Intro", inherited=True)
+    phone = fields.Char(related="partner_id.phone", string="Phone", inherited=True)
+    position = fields.Char(related="partner_id.position", string="Position", inherited=True)
+    ln_link = fields.Text(related="partner_id.ln_link", string="Linked", inherited=True)
+    fb_link = fields.Text(related="partner_id.fb_link", string="Facebook", inherited=True)
+    tw_link = fields.Text(related="partner_id.tw_link", string="Twitter", inherited=True)
+    dob = fields.Datetime(related="partner_id.dob", string="Date of birth", inherited=True)
+    banned = fields.Boolean(default=False, string="Is banned")
+    referer_id = fields.Many2one('res.users', string='Referer')
+    supervisor_id = fields.Many2one('res.users', string='Supervisor')
+    # subscription_id = fields.Many2one('opencourse.subscription', string='Subscription')
+    # date_start = fields.Datetime(related="subscription_id.date_start", string="Date start")
+    # date_expire = fields.Datetime(related="subscription_id.date_expire", string="Date expire")
+    role = fields.Selection(
+        [('staff', 'Staff'), ('learner', 'Learner'), ('teacher', 'Teacher'), ('sales', 'Sales')])
+    permission_name = fields.Char(related="permission_id.name", string="Permission Name")
+    supervisor_name = fields.Char(related="supervisor_id.name", string="Supervisor Name")
+    course_member_ids = fields.One2many('opencourse.course_member', 'user_id', string='Course members')
+    referal_name = fields.Char(related="referer_id.name", string="Referal Name", readonly=True)
+    debit = fields.Monetary(related="partner_id.debit", string="Balance", readonly=True)
+
+    @api.model
+    def create(self, vals):
+        if "login" not in vals:
+            vals["login"] = vals["email"]
+        vals["login"] = vals["login"].lower()
+        if 'referal_code' not in vals:
+            vals['referal_code'] = vals['code'] = ''.join(random.choice(ascii_uppercase + digits) for _ in range(8))
+        user = super(User, self.with_context({"no_reset_password": True})).create(vals)
+        if user.role == 'learner':
+            subscription = self.env["opencourse.subscription"].create({})
+            user.write({'subscription_id': subscription.id})
+        acc_type = self.env["account.account.type"].create({"name": vals["login"], "type": "payable"})
+        account = self.env['account.account'].create(
+            {"name": vals["name"], "code": vals["login"], "user_type_id": acc_type.id, "reconcile": True})
+        user.partner_id.write({'property_account_payable_id': account.id})
+        user.partner_id.write({'property_account_receivable_id': account.id})
+        return user
+
+
+    @api.model
+    def change_password(self, params):
+        userId = +params["userId"]
+        old_passwd = params["old_pass"]
+        new_passwd = params["new_pass"]
+        self.check(self._cr.dbname, userId, old_passwd)
+        if new_passwd:
+            for user in self.env['res.users'].browse(userId):
+                return user.write({'password': new_passwd})
+        raise ValidationError(_("Setting empty passwords is not allowed for security reasons!"))
+
+
+class Permission(models.Model):
+    _name = 'opencourse.permission'
+
+    name = fields.Char(string="Name")
+    menu_access = fields.Text(string="Menu access")
+    user_ids = fields.One2many('res.users', 'permission_id', string='Users')
+    user_group_id = fields.Many2one('res.groups', string='Group')
+    user_group_name = fields.Char(related="user_group_id.name", string="Group Name")
+    user_count = fields.Integer(compute='_compute_user_count', string='User count')
+
+    def _compute_user_count(self):
+        for perm in self:
+            perm.user_count = len(perm.user_ids)
