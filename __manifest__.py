@@ -21,7 +21,11 @@
     # always loaded
     'data': [
         'data/install.xml',
-        'data/mail.xml',
         'data/account.xml',
+        'views/course_view.xml',
+        'views/group_view.xml',
+        'views/learning_path_view.xml',
+        'views/enrollment_view.xml',
+        'views/menu_view.xml',
     ]
 }

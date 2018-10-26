@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem name="CEO Online"
+              id="menu_ceo_online"
+              sequence="1"/>
+
+    <menuitem name="Courses"
+              id="menu_ceo_online_group_course"
+              parent="menu_ceo_online"
+              sequence="1"/>
+
+    <menuitem name="Course"
+              id="menu_ceo_online_course"
+              parent="menu_ceo_online_group_course"
+              action="action_ceo_online_course"
+              sequence="1"/>
+    <menuitem name="Courses group"
+              id="menu_ceo_online_group"
+              parent="menu_ceo_online_group_course"
+              action="action_ceo_online_group_course"
+              sequence="2"/>
+
+    <menuitem name="Learning path"
+              id="menu_ceo_online_learning_path"
+              parent="menu_ceo_online_group_course"
+              action="action_ceo_online_learning_path"
+              sequence="3"/>
+    <menuitem name="Enrollment"
+              id="menu_ceo_online_enrollment"
+              parent="menu_ceo_online_group_course"
+              action="action_ceo_online_enrollment"
+              sequence="4"/>
+
+</odoo>
