@@ -16,16 +16,12 @@
     'application': True,
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'mail', 'portal', 'product', 'account', 'crm'],
-
+    'depends': ['base', 'mail', 'portal', 'account', 'crm'],
+    'sequence': 1,
     # always loaded
     'data': [
         'data/install.xml',
+        'data/mail.xml',
         'data/account.xml',
-        'views/course_view.xml',
-        'views/group_view.xml',
-        'views/learning_path_view.xml',
-        'views/enrollment_view.xml',
-        'views/menu_view.xml',
     ]
 }

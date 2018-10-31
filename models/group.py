@@ -21,7 +21,6 @@ class Group(models.Model):
 
     course_count = fields.Integer(compute='_compute_course_count', string='Course count')
 
-    @api.depends('course_ids', 'child_ids.course_count')
     def _compute_course_count(self):
         course_count = 0
         for group in self:

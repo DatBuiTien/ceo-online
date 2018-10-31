@@ -334,7 +334,7 @@ class SCORMLecture(models.Model):
 
 class CourseMember(models.Model):
     _name = 'opencourse.course_member'
-    _description = 'Thanh vien khoa hoc'
+    _description = 'Course member'
 
     syllabus_id = fields.Many2one('opencourse.syllabus', string='Syllabus', readonly=True)
     course_id = fields.Many2one('opencourse.course', string='Course')
