@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ceo_res_learner_form" model="ir.ui.view">
+        <field name="name">res.users.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_simple_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet//group//field[@name='fax']"
+                   position="after">
+                <field name="password"/>
+                <field name="group_id"/>
+                <field name="banned"/>
+                <field name="role"/>
+            </xpath>
+            <xpath expr="//sheet//group" position="after" >
+                <notebook>
+                    <page string="Payment request">
+                        <field name="payment_request_ids"/>
+                    </page>
+                    <page string="Activation code">
+                        <field name="activation_code_ids">
+                            <tree>
+                                <field name="code"/>
+                                <field name="date_use"/>
+                                <field name="status"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="ceo_learner_tree" model="ir.ui.view">
+        <field name="name">res.users.tree</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="login"/>
+                <field name="email"/>
+                <field name="position"/>
+                <field name="phone"/>
+                <field name="role"/>
+                <field name="group_id"/>
+                <field name="create_date"/>
+                <field name="write_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="ceo_staff_tree" model="ir.ui.view">
+        <field name="name">res.users.tree</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="login"/>
+                <field name="email"/>
+                <field name="position"/>
+                <field name="phone"/>
+                <field name="role"/>
+                <field name="group_id"/>
+                <field name="create_date"/>
+                <field name="write_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_ceo_online_learner" model="ir.actions.act_window">
+        <field name="name">Users</field>
+        <field name="res_model">res.users</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('role','=','learner')]</field>
+    </record>
+
+    <record id="action_ceo_online_staff" model="ir.actions.act_window">
+        <field name="name">Users</field>
+        <field name="res_model">res.users</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('role','=','staff')]</field>
+    </record>
+
+    <record id="action_ceo_online_teacher" model="ir.actions.act_window">
+        <field name="name">Users</field>
+        <field name="res_model">res.users</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('role','=','teacher')]</field>
+    </record>
+</odoo>

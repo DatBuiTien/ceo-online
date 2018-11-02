@@ -23,5 +23,16 @@
         'data/install.xml',
         'data/mail.xml',
         'data/account.xml',
+        'views/group_view.xml',
+        'views/course_view.xml',
+        'views/learning_path_view.xml',
+        'views/enrollment_view.xml',
+        'views/customer_learner_view.xml',
+        'views/payment_request_view.xml',
+        'views/web_page_view.xml',
+        'views/user_view.xml',
+        'views/permission_view.xml',
+        'views/reset_pass_token_view.xml',
+        'views/menu_view.xml',
     ]
 }

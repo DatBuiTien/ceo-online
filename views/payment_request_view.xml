@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ceo_payment_form" model="ir.ui.view">
+        <field name="name">opencourse.payment_request.form</field>
+        <field name="model">opencourse.payment_request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Confirm"
+                            name="confirm_payment" type="object" id="change_status_unconfirmed"/>
+
+                    <button string="Dispense_code"
+                            name="dispense_code" type="object" id="dispense_code"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="city"/>
+                        <field name="referal_code"/>
+                        <field name="user_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ceo_payment_tree" model="ir.ui.view">
+        <field name="name">opencourse.payment_request.tree</field>
+        <field name="model">opencourse.payment_request</field>
+        <field name="arch" type="xml">
+            <tree string="Payment">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="city"/>
+                <field name="ref"/>
+                <field name="method"/>
+                <field name="status"/>
+                <field name="date_payment"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_ceo_online_payment" model="ir.actions.act_window">
+        <field name="name">Payment request</field>
+        <field name="res_model">opencourse.payment_request</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="ceo_confirm_payment_form" model="ir.ui.view">
+        <field name="name">opencourse.payment_request.form</field>
+        <field name="model">opencourse.payment_request</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="city"/>
+                        <field name="referal_code"/>
+                        <field name="user_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

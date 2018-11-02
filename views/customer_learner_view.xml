@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ceo_customer_learner_tree" model="ir.ui.view">
+        <field name="name">res.users</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="login"/>
+                <field name="email"/>
+                <field name="phone"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_ceo_online_customer_learner" model="ir.actions.act_window">
+        <field name="name">Learner</field>
+        <field name="res_model">res.users</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('role', '=', 'learner')]
+        </field>
+    </record>
+</odoo>
