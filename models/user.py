@@ -98,12 +98,14 @@ class User(models.Model):
         return {"success": True, "user_id": user.id}
 
     @api.one
-    def extends_subscription(self):
-        result = self.subscription_id.extend()
+    def extends_subscription(self, service):
+        result = self.subscription_id.extend(service)
         if result:
             self.env['opencourse.subscription_history'].create({'subscription_id': self.subscription_id.id,
                                                                 'action_date': datetime.now(),
+                                                                'service_id': service.id,
                                                                 'learner_user_id': self.id,
+                                                                'days': service.days, 'price': service.price,
                                                                 'status': 'success', 'action': 'extend'})
         return True
 

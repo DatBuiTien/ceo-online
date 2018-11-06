@@ -9,14 +9,25 @@ from datetime import timedelta
 class Subscription(models.Model):
     _name = 'opencourse.subscription'
 
-    # date_expire = fields.Datetime(string="Date of expire")
+    date_expire = fields.Datetime(string="Date of expire")
     date_start = fields.Datetime(string="Date of start", default=fields.Datetime.now())
     user_id = fields.Many2one('res.users', string='User')
 
     @api.multi
-    def extend(self):
-        date_start = datetime.now()
-        self.write({'date_start': date_start})
+    def extend(self, service):
+        if self.date_expire:
+            date_expire = datetime.strptime(self.date_expire, "%Y-%m-%d %H:%M:%S")
+            if date_expire <= datetime.now():
+                date_start = datetime.now()
+                date_expire = datetime.now() + timedelta(days=service.days)
+                self.write({'date_start': date_start, 'date_expire': date_expire})
+            else:
+                date_expire = date_expire + timedelta(days=service.days)
+                self.write({'date_expire': date_expire})
+        else:
+            date_start = datetime.now()
+            date_expire = datetime.now() + timedelta(days=service.days)
+            self.write({'date_start': date_start, 'date_expire': date_expire})
         return True
 
 
@@ -27,8 +38,11 @@ class SubscriptionHistory(models.Model):
     action_date = fields.Datetime(string="Date of expire")
     user_id = fields.Many2one('res.users', string='Learneruser')
     price = fields.Float(string="Service price")
+    days = fields.Integer(string="Days of subscription")
     status = fields.Char(string="Status")
     action = fields.Char(string="Action")
+    service_id = fields.Many2one('product.product', string='Service')
+
 
 class Product(models.Model):
     _name = 'product.product'
