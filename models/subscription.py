@@ -29,3 +29,9 @@ class SubscriptionHistory(models.Model):
     price = fields.Float(string="Service price")
     status = fields.Char(string="Status")
     action = fields.Char(string="Action")
+
+class Product(models.Model):
+    _name = 'product.product'
+    _inherit = 'product.product'
+
+    days = fields.Integer(string="Days of subscription")

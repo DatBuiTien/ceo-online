@@ -16,7 +16,7 @@
     'application': True,
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'mail', 'portal', 'account', 'crm'],
+    'depends': ['base', 'mail', 'portal', 'account', 'crm', 'product'],
     'sequence': 1,
     # always loaded
     'data': [
