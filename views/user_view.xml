@@ -28,9 +28,38 @@
                     </page>
                 </notebook>
             </xpath>
-
         </field>
     </record>
+
+    <record id="ceo_res_res_users_form" model="ir.ui.view">
+        <field name="name">res.users.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet//notebook//page[@name='access_rights']"
+                   position="before">
+                <page string="Information">
+                    <field name="password"/>
+                    <field name="group_id"/>
+                    <field name="banned"/>
+                    <field name="role"/>
+                </page>
+                <page string="Payment request">
+                    <field name="payment_request_ids"/>
+                </page>
+                <page string="Activation code">
+                    <field name="activation_code_ids">
+                        <tree>
+                            <field name="code"/>
+                            <field name="date_use"/>
+                            <field name="status"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
 
     <record id="ceo_learner_tree" model="ir.ui.view">
         <field name="name">res.users.tree</field>

@@ -3,7 +3,7 @@
         <record id="account_register_template" model="mail.template">
             <field name="name">E-learning account registration</field>
             <field name="subject">Welcome to E-learning system</field>
-            <field name="email_from">infoceoonline@peo.vn</field>
+            <field name="email_from">info@vietinterview.com</field>
             <field name="email_to">${object.email|safe}</field>
             <field name="model_id" ref="model_res_users" />
             <field name="auto_delete" eval="True" />
@@ -23,7 +23,7 @@
          <record id="course_register_template" model="mail.template">
             <field name="name">E-learning course registration</field>
             <field name="subject">E-learning course enrollment notification</field>
-            <field name="email_from">infoceoonline@peo.vn</field>
+            <field name="email_from">info@vietinterview.com</field>
             <field name="email_to">${object.email|safe}</field>
             <field name="model_id" ref="model_opencourse_course_member" />
             <field name="auto_delete" eval="True" />
@@ -37,7 +37,7 @@
         <record id="course_open_template" model="mail.template">
             <field name="name">E-learning course open</field>
             <field name="subject">E-learning course open notification</field>
-            <field name="email_from">infoceoonline@peo.vn</field>
+            <field name="email_from">info@vietinterview.com</field>
             <field name="email_to">${object.email|safe}</field>
             <field name="model_id" ref="model_opencourse_course_member" />
             <field name="auto_delete" eval="True" />
@@ -51,7 +51,7 @@
         <record id="course_close_template" model="mail.template">
             <field name="name">E-learning course close</field>
             <field name="subject">E-learning course close notification</field>
-            <field name="email_from">infoceoonline@peo.vn</field>
+            <field name="email_from">info@vietinterview.com</field>
             <field name="email_to">${object.email|safe}</field>
             <field name="model_id" ref="model_opencourse_course_member" />
             <field name="auto_delete" eval="True" />
@@ -65,7 +65,7 @@
         <record id="payment_request_template" model="mail.template">
             <field name="name">Payment request</field>
             <field name="subject">Payment request notification</field>
-            <field name="email_from">infoceoonline@peo.vn</field>
+            <field name="email_from">info@vietinterview.com</field>
             <field name="email_to">${object.support_mail}</field>
             <field name="model_id" ref="model_opencourse_payment_request" />
             <field name="auto_delete" eval="True" />
@@ -91,7 +91,7 @@
         <record id="registration_and_activation_code_template" model="mail.template">
             <field name="name">Activation code delivery</field>
             <field name="subject">Activation code notification</field>
-            <field name="email_from">infoceoonline@peo.vn</field>
+            <field name="email_from">info@vietinterview.com</field>
             <field name="email_to">${object.user_id.email}</field>
             <field name="model_id" ref="model_opencourse_activation_code" />
             <field name="auto_delete" eval="True" />
@@ -149,7 +149,7 @@ thắc mắc của bạn về các khóa học.</p>
         <record id="contact_enquiry_template" model="mail.template">
             <field name="name">Customer enquiry</field>
             <field name="subject">Enquiry from ${object.name}</field>
-            <field name="email_from">infoceoonline@peo.vn</field>
+            <field name="email_from">info@vietinterview.com</field>
             <field name="email_to">${object.support_mail}</field>
             <field name="model_id" ref="model_opencourse_enquiry" />
             <field name="auto_delete" eval="True" />
@@ -171,7 +171,7 @@ thắc mắc của bạn về các khóa học.</p>
         <record id="activation_code_template" model="mail.template">
             <field name="name">Activation code delivery</field>
             <field name="subject">Activation code notification</field>
-            <field name="email_from">infoceoonline@peo.vn</field>
+            <field name="email_from">info@vietinterview.com</field>
             <field name="email_to">${object.user_id.email}</field>
             <field name="model_id" ref="model_opencourse_activation_code" />
             <field name="auto_delete" eval="True" />
@@ -228,7 +228,7 @@ thắc mắc của bạn về các khóa học.</p>
         <record id="contact_enquiry_template" model="mail.template">
             <field name="name">Customer enquiry</field>
             <field name="subject">Enquiry from ${object.name}</field>
-            <field name="email_from">infoceoonline@peo.vn</field>
+            <field name="email_from">info@vietinterview.com</field>
             <field name="email_to">${object.support_mail}</field>
             <field name="model_id" ref="model_opencourse_enquiry" />
             <field name="auto_delete" eval="True" />
@@ -250,7 +250,7 @@ thắc mắc của bạn về các khóa học.</p>
         <record id="teacher_enquiry_template" model="mail.template">
             <field name="name">Teacher enquiry</field>
             <field name="subject">Enquiry from ${object.name}</field>
-            <field name="email_from">infoceoonline@peo.vn</field>
+            <field name="email_from">info@vietinterview.com</field>
             <field name="email_to">${object.support_mail}</field>
             <field name="model_id" ref="model_opencourse_enquiry" />
             <field name="auto_delete" eval="True" />
@@ -274,7 +274,7 @@ thắc mắc của bạn về các khóa học.</p>
         <record id="collaborate_enquiry_template" model="mail.template">
             <field name="name">Collaboration enquiry</field>
             <field name="subject">Enquiry from ${object.name}</field>
-            <field name="email_from">infoceoonline@peo.vn</field>
+            <field name="email_from">info@vietinterview.com</field>
             <field name="email_to">${object.support_mail}</field>
             <field name="model_id" ref="model_opencourse_enquiry" />
             <field name="auto_delete" eval="True" />
