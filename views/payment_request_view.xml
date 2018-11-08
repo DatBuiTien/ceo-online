@@ -20,6 +20,7 @@
                         <field name="city"/>
                         <field name="referal_code"/>
                         <field name="user_id"/>
+                        <field name="amount"/>
                     </group>
                 </sheet>
             </form>
@@ -39,6 +40,7 @@
                 <field name="method"/>
                 <field name="status"/>
                 <field name="date_payment"/>
+                <field name="amount"/>
             </tree>
         </field>
     </record>
@@ -63,6 +65,7 @@
                         <field name="city"/>
                         <field name="referal_code"/>
                         <field name="user_id"/>
+                        <field name="amount"/>
                     </group>
                 </sheet>
             </form>
