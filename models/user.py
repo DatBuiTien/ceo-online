@@ -59,6 +59,7 @@ class User(models.Model):
     referer_id = fields.Many2one('res.users', string='Referer')
     supervisor_id = fields.Many2one('res.users', string='Supervisor')
     subscription_id = fields.Many2one('opencourse.subscription', string='Subscription')
+    date_expire = fields.Datetime(related="subscription_id.date_expire", string="Date expire")
     date_start = fields.Datetime(related="subscription_id.date_start", string="Date start")
     role = fields.Selection(
         [('staff', 'Staff'), ('learner', 'Learner'), ('teacher', 'Teacher'), ('sales', 'Sales')])

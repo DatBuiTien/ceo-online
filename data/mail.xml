@@ -109,12 +109,18 @@
         color: red; 
         font-weight: 600;
     }
+    h4{
+        color: blue;
+    }
+    .blue_text{
+        color:blue;
+    }
 </style>
-<p>Anh/chị thân mến,</p>
-<p>Chào mừng anh/chị đến với ${object.user_id.company_id.name}!</p>
-<p>Khi trở thành học viên của ${object.user_id.company_id.name}, anh/chị sẽ được nhận thông tin về những
-chương trình khuyến mãi độc quyền và những chương trình đào tạo mới nhất được
-cập nhật trên website.</p>
+<p>Kính chào Quý Anh/Chị!</p>
+<p>Chào mừng anh/chị đến với Chương trình đào tạo ${object.user_id.company_id.name} - Giám đốc Điều hành chuyên nghiệp.</p>
+<p>Khi trở thành học viên của chương trình, anh/chị sẽ được nhận thông tin về những chương trình khuyến mãi độc quyền của
+ ${object.user_id.company_id.name}, các hoạt động offline và nhiều thông tin hấp dẫn khác liên quan đến chương trình đào tạo.
+ </p>
 <h4>HÃY VÀO WEBSITE NGAY ĐỂ BẮT ĐẦU LỘ TRÌNH HỌC TẬP</h4>
 <p>Mã kích hoạt: <span class="highlight">${object.code}</span><p>
 <hr>
@@ -122,27 +128,21 @@ cập nhật trên website.</p>
 <ul class="active">
     <li>Bước 1: Truy cập website ${object.user_id.company_id.website}</li>
     <li>Bước 2: Đăng nhập tài khoản ${ctx["login"]} / ${ctx["password"]}</li>
-    <li>Bước 3: Nhấp vào link “Kích hoạt khóa học” trên thanh menu</li>
-    <li>Bước 4: Nhập mã kích hoạt vào ô “Nhập mã kích hoạt”</li>
-    <li>Bước 5: Ấn nút “Kích hoạt ngay” để hoàn thành đăng ký</li>
+    <li>Bước 3: Nhấp vào link “<span class='blue_text'>Kích hoạt khóa học</span>” trên thanh menu</li>
+    <li>Bước 4: Nhập mã kích hoạt vào ô “<span class='blue_text'>Nhập mã kích hoạt</span>”</li>
+    <li>Bước 5: Ấn nút “<span class='blue_text'>Kích hoạt ngay</span>” để hoàn thành đăng ký</li>
 </ul>
-<p>Liên hệ Hotline:<span class="highlight"> ${object.user_id.company_id.phone}</span> để được tư vấn cũng như giải quyết các
-thắc mắc của bạn về các khóa học.</p>
-<p>Anh/chị có thể tham khảo lộ trình học tập tại ${object.user_id.company_id.website} như sau:</p>
-<ol>
-    <li>Nhà lãnh đạo tài ba</li>
-    <li>Nhân viên kinh doanh xuất sắc</li>
-    <li>Marketer thời 4.0</li>
-    <li>Kế toán viên chuyên nghiệp</li>
-    <li>Tỏa sáng trong giao tiếp</li>
-    <li>Quản lý nhân sự</li>
-    <li>Làm chủ quy trình sản xuất</li>
-    <li>Khởi nghiệp thành công</li>
-</ol>
+<p>Liên hệ Hotline:<span class="highlight"> ${object.user_id.company_id.phone}</span>
+để được tư vấn cũng như giải quyết các thắc mắc của anh/chị về chương trình.
+</p>
 <hr>
-<h4>HỌC VIỆN ĐÀO TẠO TRỰC TUYẾN VIỆT NAM</h4>
-<a href="">Website: ${object.user_id.company_id.website}</a> 
-<p [innerHTML]="object.user_id.company_id.street"></p>
+<h4>VIỆN DOANH NHÂN ASEAN – CHƯƠNG TRÌNH CEO ONLINE</h4>
+<p>HOTLINE: <span class="highlight">${object.user_id.company_id.phone}</span></p>
+<p style="font-weight:600">Email: ${object.user_id.company_id.email}</p>
+<p style="font-weight:600">Website: <a href=${object.user_id.company_id.website}>${object.user_id.company_id.website}</a></p>
+<p style="font-weight:600">Fanpage: <a href=${object.user_id.company_id.fb_link}>${object.user_id.company_id.name}</a></p>
+<p style="font-weight:600">Youtube: <a href=${object.user_id.company_id.yt_link}>${object.user_id.company_id.name}</a></p>
+<p>${object.user_id.company_id.street}</p>
 ]]>
             </field>
         </record>

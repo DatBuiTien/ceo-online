@@ -11,6 +11,8 @@ class WebPage(models.Model):
     code = fields.Char('Code')
     content = fields.Text('Content')
     section_ids = fields.One2many('opencourse.page_section', 'page_id', string="Sections")
+    title = fields.Char('Title')
+    metadata = fields.Char('metadata')
 
 
 class PageSection(models.Model):
