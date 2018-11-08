@@ -222,7 +222,7 @@
 <p style="font-weight:600">Website: <a href=${object.user_id.company_id.website}>${object.user_id.company_id.website}</a></p>
 <p style="font-weight:600">Fanpage: <a href=${object.user_id.company_id.fb_link}>${object.user_id.company_id.name}</a></p>
 <p style="font-weight:600">Youtube: <a href=${object.user_id.company_id.yt_link}>${object.user_id.company_id.name}</a></p>
-<p>${object.user_id.company_id.street}</p>
+<p [innerHTML]="object.user_id.company_id.street"></p>
 ]]>
             </field>
         </record>
