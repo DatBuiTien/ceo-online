@@ -105,7 +105,7 @@ class User(models.Model):
             self.env['opencourse.subscription_history'].create({'subscription_id': self.subscription_id.id,
                                                                 'action_date': datetime.now(),
                                                                 'service_id': service.id,
-                                                                'learner_user_id': self.id,
+                                                                'user_id': self.id,
                                                                 'days': service.days, 'price': service.price,
                                                                 'status': 'success', 'action': 'extend'})
         return True
