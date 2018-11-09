@@ -9,6 +9,7 @@
                     <group>
                         <field name="name"/>
                         <field name="price"/>
+                        <field name="days"/>
                     </group>
                 </sheet>
             </form>
@@ -21,7 +22,8 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
-                field name="price"/>
+                <field name="price"/>
+                <field name="days"/>
                 <field name="create_date"/>
                 <field name="write_date"/>
             </tree>

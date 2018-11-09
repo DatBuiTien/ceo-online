@@ -29,6 +29,7 @@
         'views/enrollment_view.xml',
         'views/customer_learner_view.xml',
         'views/payment_request_view.xml',
+        'views/product_view.xml',
         'views/web_page_view.xml',
         'views/user_view.xml',
         'views/permission_view.xml',

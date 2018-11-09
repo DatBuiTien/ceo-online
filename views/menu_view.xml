@@ -54,10 +54,11 @@
               parent="menu_ceo_online"
               sequence="3"/>
 
-    <menuitem name="Promotion"
-              id="menu_ceo_online_sales_promotions"
+    <menuitem name="Product"
+              id="menu_ceo_online_sales_product"
               parent="menu_ceo_online_sales"
-              sequence="2"/>
+              action="action_ceo_online_product"
+              sequence="1"/>
 
     <menuitem name="Web CMS"
               id="menu_ceo_online_web_cms"

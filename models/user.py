@@ -142,6 +142,7 @@ class User(models.Model):
                                                                   self._module + "." + 'cash_journal').id})
                 payment.post()
                 activation_code = self.env['opencourse.activation_code'].create({'payment_request_id': requestId,
+                                                                                 'product_id': request.product_id.id,
                                                                                  'user_id': request.user_id.id,
                                                                                  'status': 'open'})
                 request.write({'status': 'processed', 'activation_code_id': activation_code.id,

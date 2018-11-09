@@ -9,6 +9,8 @@
                 <field name="login"/>
                 <field name="email"/>
                 <field name="phone"/>
+                <field name="date_start"/>
+                <field name="date_expire"/>
             </tree>
         </field>
     </record>
