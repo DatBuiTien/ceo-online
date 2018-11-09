@@ -118,7 +118,7 @@ class User(models.Model):
             for activation_code in self.env['opencourse.activation_code'].search([('code', '=', code)]):
                 if activation_code.status == 'used':
                     return {'status': False, 'error': 'ACTIVATION_CODE_USED', 'message': 'Mã đã được sử dụng.'}
-                user.extends_subscription()
+                user.extends_subscription(activation_code.product_id)
                 activation_code.write({'status': 'used', 'date_use': fields.Datetime.now()})
                 return {'status': True, 'activation_code': activation_code.read(),
                         'subscription': user.subscription_id.read()}
