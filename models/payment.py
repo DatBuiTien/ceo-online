@@ -54,6 +54,7 @@ class PaymentRequest(models.Model):
     status = fields.Selection(
         [('open', 'Open'), ('rejected', 'Rejected'), ('processed', 'Processed')], default="open")
     date_payment = fields.Datetime(string="Date payment")
+    product_id = fields.Many2one('product.product', 'Subscription service')
 
     @api.model
     def create(self, vals):
