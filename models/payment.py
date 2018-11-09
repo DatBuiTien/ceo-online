@@ -22,6 +22,8 @@ class ActivationCode(models.Model):
     user_id = fields.Many2one('res.users', 'User')
     status = fields.Selection(
         [('initial', 'Initial'), ('open', 'Open'), ('used', 'Used')], default="initial")
+    product_id = fields.Many2one('product.product', 'Subscription service')
+
 
     @api.model
     def create(self, vals):
