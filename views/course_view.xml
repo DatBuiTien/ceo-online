@@ -11,10 +11,8 @@
                         <field name="group_id"/>
                         <field name="name"/>
                         <field name="code"/>
-
                         <field name="supervisor_id"/>
                         <field name="level"/>
-
                     </group>
 
                 </sheet>

@@ -55,7 +55,7 @@ class NotificationService(osv.AbstractModel):
 
     @api.model
     def sendSingleMail(self, params):
-        email_from = 'info@vietinterview.com'
+        email_from = 'info@ceoonline.vn'
         email_to = params["email_to"]
         email_body = params["body"]
         email_subject = params["subject"]
@@ -66,7 +66,7 @@ class NotificationService(osv.AbstractModel):
 
     @api.model
     def broadcastMail(self, params):
-        email_from = 'info@vietinterview.com'
+        email_from = 'info@ceoonline.vn'
         email_cc = params["recipients"]
         email_body = params["body"]
         email_subject = params["subject"]

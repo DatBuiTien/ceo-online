@@ -133,13 +133,11 @@ class User(models.Model):
                 learner_id = request.user_id
                 print(request.amount)
                 payment = self.env['account.payment'].create({'payment_type': 'inbound',
-                                                              'payment_method_id': self.env.ref(
-                                                                'account.account_payment_method_manual_in').id,
+                                                              'payment_method_id': self.env.ref('account.account_payment_method_manual_in').id,
                                                               'partner_type': 'customer',
                                                               'partner_id': learner_id.partner_id.id,
                                                               'amount': request.amount,
-                                                              'journal_id': self.env.ref(
-                                                                  self._module + "." + 'cash_journal').id})
+                                                              'journal_id': self.env.ref(self._module + "." + 'cash_journal').id})
                 payment.post()
                 activation_code = self.env['opencourse.activation_code'].create({'payment_request_id': requestId,
                                                                                  'product_id': request.product_id.id,

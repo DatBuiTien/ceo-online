@@ -24,7 +24,6 @@ class ActivationCode(models.Model):
         [('initial', 'Initial'), ('open', 'Open'), ('used', 'Used')], default="initial")
     product_id = fields.Many2one('product.product', 'Subscription service')
 
-
     @api.model
     def create(self, vals):
         vals['code'] = ''.join(random.choice(ascii_uppercase + digits) for _ in range(8))
