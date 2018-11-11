@@ -11,6 +11,12 @@
 
                     <button string="Dispense_code"
                             name="dispense_code" type="object" id="dispense_code"/>
+
+                    <button string="Reject"
+                            name="reject" type="object" id="reject"/>
+
+                    <button string="Upload"
+                            name="upload" type="object" id="upload"/>
                 </header>
                 <sheet>
                     <group>
@@ -20,6 +26,7 @@
                         <field name="city"/>
                         <field name="referal_code"/>
                         <field name="user_id"/>
+                        <field name="product_id"/>
                         <field name="amount"/>
                     </group>
                 </sheet>
@@ -39,8 +46,8 @@
                 <field name="ref"/>
                 <field name="method"/>
                 <field name="status"/>
+                <field name="product_id"/>
                 <field name="date_payment"/>
-                <field name="amount"/>
             </tree>
         </field>
     </record>
@@ -64,8 +71,8 @@
                         <field name="phone"/>
                         <field name="city"/>
                         <field name="referal_code"/>
+                        <field name="product_id"/>
                         <field name="user_id"/>
-                        <field name="amount"/>
                     </group>
                 </sheet>
             </form>

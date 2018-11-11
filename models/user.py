@@ -45,7 +45,7 @@ class User(models.Model):
     group_code = fields.Char(related="group_id.code", string="Code", readonl=True)
     group_name = fields.Char(related="group_id.name", string="Name", readonly=True)
     permission_id = fields.Many2one('opencourse.permission', string='Permission')
-    referal_code = fields.Char(string="Referal code", related="partner_id.referal_code")
+    referal_code = fields.Char(string="Referral code", related="partner_id.referal_code")
     street = fields.Char(related="partner_id.street", string="Address", inherited=True)
     mobile = fields.Char(related="partner_id.mobile", string="Mobile", inherited=True)
     intro = fields.Text(related="partner_id.intro", string="Intro", inherited=True)
@@ -59,8 +59,8 @@ class User(models.Model):
     referer_id = fields.Many2one('res.users', string='Referer')
     supervisor_id = fields.Many2one('res.users', string='Supervisor')
     subscription_id = fields.Many2one('opencourse.subscription', string='Subscription')
-    date_expire = fields.Datetime(related="subscription_id.date_expire", string="Date expire")
     date_start = fields.Datetime(related="subscription_id.date_start", string="Date start")
+    date_expire = fields.Datetime(related="subscription_id.date_expire", string="Date expire")
     role = fields.Selection(
         [('staff', 'Staff'), ('learner', 'Learner'), ('teacher', 'Teacher'), ('sales', 'Sales')])
     permission_name = fields.Char(related="permission_id.name", string="Permission Name")
@@ -100,14 +100,17 @@ class User(models.Model):
 
     @api.one
     def extends_subscription(self, service):
+        print(service)
         result = self.subscription_id.extend(service)
         if result:
             self.env['opencourse.subscription_history'].create({'subscription_id': self.subscription_id.id,
                                                                 'action_date': datetime.now(),
                                                                 'service_id': service.id,
                                                                 'user_id': self.id,
-                                                                'days': service.days, 'price': service.price,
-                                                                'status': 'success', 'action': 'extend'})
+                                                                'days': service.days,
+                                                                'price': service.price,
+                                                                'status': 'success',
+                                                                'action': 'extend'})
         return True
 
     @api.model
@@ -128,17 +131,22 @@ class User(models.Model):
         staffId = params["staffId"]
         requestId = +params["requestId"]
         account = params["account"]
+        print(params)
         for staff in self.env['res.users'].browse(staffId):
             for request in self.env['opencourse.payment_request'].browse(requestId):
                 learner_id = request.user_id
                 print(request.amount)
+                print(learner_id)
+                print(learner_id.partner_id.id)
                 payment = self.env['account.payment'].create({'payment_type': 'inbound',
                                                               'payment_method_id': self.env.ref('account.account_payment_method_manual_in').id,
                                                               'partner_type': 'customer',
                                                               'partner_id': learner_id.partner_id.id,
                                                               'amount': request.amount,
                                                               'journal_id': self.env.ref(self._module + "." + 'cash_journal').id})
+
                 payment.post()
+
                 activation_code = self.env['opencourse.activation_code'].create({'payment_request_id': requestId,
                                                                                  'product_id': request.product_id.id,
                                                                                  'user_id': request.user_id.id,
@@ -151,6 +159,7 @@ class User(models.Model):
                     if referer:
                         learner_id.write({'referer_id': referer.id})
                 if account:
+
                     self.env.ref(self._module + "." + "registration_and_activation_code_template").with_context(
                         {"password": account["password"], "login": account["login"]}).send_mail(activation_code.id,
                                                                                                 force_send=True)

@@ -3,7 +3,7 @@
 from odoo import models, fields, api
 from string import ascii_uppercase, digits
 import random
-
+import string
 
 
 class AccountPayment(models.Model):
@@ -19,10 +19,10 @@ class ActivationCode(models.Model):
     payment_request_id = fields.Many2one('opencourse.payment_request', string='Payment request')
     code = fields.Char(string="Code")
     date_use = fields.Datetime(string="Date active")
+    product_id = fields.Many2one('product.product', 'Subscription service')
     user_id = fields.Many2one('res.users', 'User')
     status = fields.Selection(
         [('initial', 'Initial'), ('open', 'Open'), ('used', 'Used')], default="initial")
-    product_id = fields.Many2one('product.product', 'Subscription service')
 
     @api.model
     def create(self, vals):
@@ -36,24 +36,24 @@ class PaymentRequest(models.Model):
 
     name = fields.Char(string="Name")
     amount = fields.Float(string="Amount")
-    ref = fields.Char(string="Ref")
+    ref = fields.Char(string="Code bill")
     email = fields.Char(string="Email")
     phone = fields.Char(string="Phone")
     city = fields.Char(string="City")
-    referal_code = fields.Char(string="Referal")
+    referal_code = fields.Char(string="Referral code")
     support_mail = fields.Char(string="Support email")
     user_id = fields.Many2one('res.users', 'Learner')
     user_name = fields.Char(related="user_id.name", string="User name", readonly=True)
     referer_name = fields.Char(related="user_id.referal_name", string="Sales person", readonly=True)
     activation_code = fields.Char(related="activation_code_id.code", string="Activation code", readonly=True)
     activation_code_id = fields.Many2one('opencourse.activation_code', 'Activation code')
+    product_id = fields.Many2one('product.product', 'Subscription service')
     address = fields.Text(string="Address")
     method = fields.Selection(
         [('home', 'Home'), ('counter', 'Counter'), ('wire', 'Bank Transfer')], default="counter")
     status = fields.Selection(
         [('open', 'Open'), ('rejected', 'Rejected'), ('processed', 'Processed')], default="open")
     date_payment = fields.Datetime(string="Date payment")
-    product_id = fields.Many2one('product.product', 'Subscription service')
 
     @api.model
     def create(self, vals):
@@ -65,13 +65,59 @@ class PaymentRequest(models.Model):
         return request
 
     @api.multi
+    def check_payment_request(self, vals):
+        print(vals)
+        if vals['email']:
+            payment = self.env['res.users'].sudo().search([('email', '=', vals['email'])])
+            if payment:
+                return {'success': False, 'message': 'Email đã tồn tại trên hệ thống. Bạn đã có tài khoản, vui lòng đăng nhập để thực hiện tiếp'}
+            return {'success': True}
+
+    @api.multi
+    def reject(self, vals):
+        request_id = vals['RequestId']
+        request = self.env['opencourse.payment_request'].browse(request_id)
+        request.status = 'rejected'
+        password = ''.join(random.choice(string.ascii_letters + string.digits) for i in range(8))
+        return request
+
+    @api.model
+    def upload(self, vals):
+        vals = {
+            'name': 'Tuấn',
+            'login': 'oktung123@gmail.com',
+            'email': 'oktung123@gmail.com',
+            'phone': '0303988834',
+            'address': 'Hồ Tùng Mậu',
+            'city': 'Hà Nội',
+            'referal_code': '',
+            'method': 'counter',
+            'amount': 200000
+        }
+        if self.env['res.users'].search([('login', '=', vals['login'])]):
+            return {'success': False, 'message': 'Account exist !'}
+        user_vals = vals
+        user_vals.update({
+            'password': ''.join(random.choice(string.ascii_letters + string.digits) for i in range(8)),
+            'role': 'learner'
+        })
+        print(user_vals['password'])
+        user = self.env['res.users'].create(user_vals)
+        payment_vals = vals
+        payment_vals.update({
+            'user_id': user.id
+        })
+
+
+
+    @api.multi
     def confirm_payment(self):
         vals = {
             'staffId': self.user_id.id,
             'requestId': self.id,
             'account': {
                 'login': self.user_id.email,
-                'password': '123'
+                'password': ''.join(random.choice(ascii_uppercase + digits) for _ in range(6))
             }
         }
         print(vals)
@@ -80,10 +126,12 @@ class PaymentRequest(models.Model):
     @api.multi
     def dispense_code(self):
         vals = {
-            'code': 'OPXW9Z9T',
+            'code': '1E2YDOMJ',
             'userId': self.user_id.id
         }
         self.env['res.users'].dispense_code(vals)
         print(True)
+
+
 
 

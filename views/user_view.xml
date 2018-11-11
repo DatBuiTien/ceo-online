@@ -1,36 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="ceo_res_learner_form" model="ir.ui.view">
-        <field name="name">res.users.form</field>
-        <field name="model">res.users</field>
-        <field name="inherit_id" ref="base.view_users_simple_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//sheet//group//field[@name='fax']"
-                   position="after">
-                <field name="password"/>
-                <field name="group_id"/>
-                <field name="banned"/>
-                <field name="role"/>
-            </xpath>
-            <xpath expr="//sheet//group" position="after" >
-                <notebook>
-                    <page string="Payment request">
-                        <field name="payment_request_ids"/>
-                    </page>
-                    <page string="Activation code">
-                        <field name="activation_code_ids">
-                            <tree>
-                                <field name="code"/>
-                                <field name="date_use"/>
-                                <field name="status"/>
-                            </tree>
-                        </field>
-                    </page>
-                </notebook>
-            </xpath>
-        </field>
-    </record>
-
     <record id="ceo_res_res_users_form" model="ir.ui.view">
         <field name="name">res.users.form</field>
         <field name="model">res.users</field>
@@ -39,10 +8,16 @@
             <xpath expr="//sheet//notebook//page[@name='access_rights']"
                    position="before">
                 <page string="Information">
-                    <field name="password"/>
-                    <field name="group_id"/>
-                    <field name="banned"/>
-                    <field name="role"/>
+                    <group>
+                        <field name="password"/>
+                        <field name="group_id"/>
+                        <field name="banned"/>
+                        <field name="role"/>
+                        <field name="subscription_id"/>
+                        <field name="date_start"/>
+                        <field name="date_expire"/>
+                    </group>
+
                 </page>
                 <page string="Payment request">
                     <field name="payment_request_ids"/>
@@ -64,12 +39,18 @@
     <record id="ceo_learner_tree" model="ir.ui.view">
         <field name="name">res.users.tree</field>
         <field name="model">res.users</field>
-        <field name="inherit_id" ref="base.view_users_tree"/>
         <field name="arch" type="xml">
-            <xpath expr="field[@name='login_date']" position="before">
-                <field name="date_start"/>
-                <field name="date_expire"/>
-            </xpath>
+            <tree>
+                <field name="name"/>
+                <field name="login"/>
+                <field name="email"/>
+                <field name="position"/>
+                <field name="phone"/>
+                <field name="role"/>
+                <field name="group_id"/>
+                <field name="create_date"/>
+                <field name="write_date"/>
+            </tree>
         </field>
     </record>
 

@@ -37,11 +37,11 @@ class SubscriptionHistory(models.Model):
     subscription_id = fields.Many2one('opencourse.subscription', string='Subscription')
     action_date = fields.Datetime(string="Date of expire")
     user_id = fields.Many2one('res.users', string='Learneruser')
+    service_id = fields.Many2one('product.product', string='Service')
     price = fields.Float(string="Service price")
-    days = fields.Integer(string="Days of subscription")
     status = fields.Char(string="Status")
     action = fields.Char(string="Action")
-    service_id = fields.Many2one('product.product', string='Service')
+    days = fields.Integer(string="Days of subscription")
 
 
 class Product(models.Model):
