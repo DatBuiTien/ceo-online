@@ -73,6 +73,10 @@ class User(models.Model):
 
     @api.model
     def create(self, vals):
+        if vals['email']:
+            check_email = self.search([('email', '=', vals['email'])])
+            if check_email:
+                return {'success': False, 'message': 'Email đã tồn tại'}
         if "login" not in vals:
             vals["login"] = vals["email"]
         vals["login"] = vals["login"].lower()
