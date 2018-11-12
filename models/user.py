@@ -135,12 +135,10 @@ class User(models.Model):
         staffId = params["staffId"]
         requestId = +params["requestId"]
         account = params["account"]
-        product_id = params['product_id']
         print(params)
         for staff in self.env['res.users'].browse(staffId):
             for request in self.env['opencourse.payment_request'].browse(requestId):
                 learner_id = request.user_id
-                request.write({'product_id': product_id})
                 payment = self.env['account.payment'].create({'payment_type': 'inbound',
                                                               'payment_method_id': self.env.ref('account.account_payment_method_manual_in').id,
                                                               'partner_type': 'customer',
