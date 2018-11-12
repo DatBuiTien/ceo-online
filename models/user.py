@@ -135,7 +135,7 @@ class User(models.Model):
         staffId = params["staffId"]
         requestId = +params["requestId"]
         account = params["account"]
-        product_id = params['productId']
+        product_id = params['product_id']
         print(params)
         for staff in self.env['res.users'].browse(staffId):
             for request in self.env['opencourse.payment_request'].browse(requestId):
