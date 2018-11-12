@@ -57,6 +57,10 @@ class PaymentRequest(models.Model):
 
     @api.model
     def create(self, vals):
+        user = self.env['res.users'].search([('email', '=', vals['email'])])
+        if user:
+            return {'success': False, 'message': 'Email đã tồn tại trên hệ thống. '
+                                                 'Bạn đã có tài khoản, vui lòng đăng nhập để thực hiện'}
         company = self.env.ref('base.main_company')
         vals['ref'] = ''.join(random.choice(ascii_uppercase + digits) for _ in range(6))
         vals["support_mail"] = company.email
