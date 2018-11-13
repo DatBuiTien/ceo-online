@@ -49,6 +49,7 @@ class Course(models.Model):
     view_count = fields.Integer(string='View count')
     rating = fields.Integer(compute='_compute_rating', string='Rating')
     learning_path_id = fields.Many2one("opencourse.learning_path", string="Learning path")
+    metadata = fields.Char(string="Metadata")
 
     def _compute_teacher(self):
         for course in self:
