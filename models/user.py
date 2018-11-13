@@ -76,7 +76,7 @@ class User(models.Model):
         if vals['email']:
             check_email = self.search([('email', '=', vals['email'])])
             if check_email:
-                return {'success': False, 'message': 'Email đã tồn tại'}
+                return False
         if "login" not in vals:
             vals["login"] = vals["email"]
         vals["login"] = vals["login"].lower()

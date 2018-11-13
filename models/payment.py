@@ -3,6 +3,7 @@
 from odoo import models, fields, api
 from string import ascii_uppercase, digits
 import random
+import datetime
 import string
 
 
@@ -53,14 +54,13 @@ class PaymentRequest(models.Model):
         [('home', 'Home'), ('counter', 'Counter'), ('wire', 'Bank Transfer')], default="counter")
     status = fields.Selection(
         [('open', 'Open'), ('rejected', 'Rejected'), ('processed', 'Processed')], default="open")
-    date_payment = fields.Datetime(string="Date payment")
+    date_payment = fields.Datetime(string="Date payment", default=datetime.datetime.now())
 
     @api.model
     def create(self, vals):
         user = self.env['res.users'].search([('email', '=', vals['email'])])
         if user:
-            return {'success': False, 'message': 'Email đã tồn tại trên hệ thống. '
-                                                 'Bạn đã có tài khoản, vui lòng đăng nhập để thực hiện'}
+            return False
         company = self.env.ref('base.main_company')
         vals['ref'] = ''.join(random.choice(ascii_uppercase + digits) for _ in range(6))
         vals["support_mail"] = company.email
@@ -122,7 +122,8 @@ class PaymentRequest(models.Model):
             'account': {
                 'login': self.user_id.email,
                 'password': ''.join(random.choice(ascii_uppercase + digits) for _ in range(6))
-            }
+            },
+            'productId': 1
         }
         print(vals)
         self.env['res.users'].confirm_payment(vals)
@@ -130,7 +131,7 @@ class PaymentRequest(models.Model):
     @api.multi
     def dispense_code(self):
         vals = {
-            'code': '1E2YDOMJ',
+            'code': 'DXEMA7JM',
             'userId': self.user_id.id
         }
         self.env['res.users'].dispense_code(vals)
