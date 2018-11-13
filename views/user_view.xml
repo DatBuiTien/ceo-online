@@ -12,6 +12,7 @@
                         <field name="password"/>
                         <field name="group_id"/>
                         <field name="banned"/>
+                        <field name="is_admin"/>
                         <field name="role"/>
                         <field name="subscription_id"/>
                         <field name="date_start"/>
