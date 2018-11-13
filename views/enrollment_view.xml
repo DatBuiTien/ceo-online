@@ -14,6 +14,8 @@
                         <group>
                             <field name="name"/>
                             <field name="code"/>
+                            <field name="logo_id"/>
+                            <field name="logo_url"/>
                             <field name="status"/>
                             <field name="create_uid"/>
                             <field name="create_date"/>
@@ -32,6 +34,8 @@
             <tree>
                 <field name="name"/>
                 <field name="code"/>
+                <field name="logo_id"/>
+                <field name="logo_url"/>
                 <field name="status"/>
                 <field name="create_uid"/>
                 <field name="create_date"/>

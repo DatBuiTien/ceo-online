@@ -9,6 +9,8 @@
                     <group>
                         <field name="logo_id"/>
                         <field name="group_id"/>
+                        <field name="logo_id"/>
+                        <field name="logo_url"/>
                         <field name="name"/>
                         <field name="code"/>
                         <field name="supervisor_id"/>
@@ -27,6 +29,8 @@
             <tree string="Res groups">
                 <field name="name"/>
                 <field name="code"/>
+                <field name="logo_id"/>
+                <field name="logo_url"/>
                 <field name="create_uid"/>
                 <field name="status"/>
                 <field name="create_date"/>

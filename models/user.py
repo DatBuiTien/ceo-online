@@ -73,7 +73,7 @@ class User(models.Model):
 
     @api.model
     def create(self, vals):
-        if vals['email']:
+        if vals['email'] and vals['email'] != '':
             check_email = self.search([('email', '=', vals['email'])])
             if check_email:
                 return False
