@@ -16,6 +16,7 @@
                             <field name="code"/>
                             <field name="logo_id"/>
                             <field name="logo_url"/>
+                            <field name="metadata"/>
                             <field name="status"/>
                             <field name="create_uid"/>
                             <field name="create_date"/>
@@ -36,6 +37,7 @@
                 <field name="code"/>
                 <field name="logo_id"/>
                 <field name="logo_url"/>
+                <field name="metadata"/>
                 <field name="status"/>
                 <field name="create_uid"/>
                 <field name="create_date"/>
