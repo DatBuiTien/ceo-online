@@ -73,7 +73,7 @@ class Course(models.Model):
     def _compute_rating(self):
         for course in self:
             sum = 0
-            ratings = self.env['opencourse.course_rating'].search([('course_id', '=', course.id), ])
+            ratings = self.env['opencourse.course_rating'].search([('course_id', '=', course.id)])
             for rating in ratings:
                 sum += rating.grade
             if not len(ratings):

@@ -58,9 +58,6 @@ class PaymentRequest(models.Model):
 
     @api.model
     def create(self, vals):
-        user = self.env['res.users'].search([('email', '=', vals['email'])])
-        if user:
-            return False
         company = self.env.ref('base.main_company')
         vals['ref'] = ''.join(random.choice(ascii_uppercase + digits) for _ in range(6))
         vals["support_mail"] = company.email
@@ -69,9 +66,9 @@ class PaymentRequest(models.Model):
         return request
 
     @api.multi
-    def check_payment_request(self, vals):
+    def check_email_payment(self, vals):
         print(vals)
-        if vals['email']:
+        if vals['email'] and vals['email'] != '':
             payment = self.env['res.users'].sudo().search([('email', '=', vals['email'])])
             if payment:
                 return {'success': False, 'message': 'Email đã tồn tại trên hệ thống. Bạn đã có tài khoản, vui lòng đăng nhập để thực hiện tiếp'}

@@ -73,10 +73,6 @@ class User(models.Model):
 
     @api.model
     def create(self, vals):
-        if vals['email'] and vals['email'] != '':
-            check_email = self.search([('email', '=', vals['email'])])
-            if check_email:
-                return False
         if "login" not in vals:
             vals["login"] = vals["email"]
         vals["login"] = vals["login"].lower()
@@ -92,6 +88,14 @@ class User(models.Model):
         user.partner_id.write({'property_account_payable_id': account.id})
         user.partner_id.write({'property_account_receivable_id': account.id})
         return user
+
+    @api.multi
+    def check_email_user(self, vals):
+        if vals['email'] and vals['email'] != '':
+            check_email = self.search([('email', '=', vals['email'])])
+            if check_email:
+                return {'success': False, 'message': 'Email đã tồn tại'}
+        return {'success': True}
 
     @api.model
     def register(self, params):
