@@ -53,7 +53,7 @@ class PaymentRequest(models.Model):
     method = fields.Selection(
         [('home', 'Home'), ('counter', 'Counter'), ('wire', 'Bank Transfer')], default="counter")
     status = fields.Selection(
-        [('open', 'Open'), ('rejected', 'Rejected'), ('processed', 'Processed')], default="open")
+        [('open', 'Open'), ('rejected', 'Rejected'), ('confirmed', 'Confirmed')], default="open")
     date_payment = fields.Datetime(string="Date payment", default=datetime.datetime.now())
 
     @api.model
@@ -79,7 +79,7 @@ class PaymentRequest(models.Model):
         request_id = vals['RequestId']
         request = self.env['opencourse.payment_request'].browse(request_id)
         request.status = 'rejected'
-        password = ''.join(random.choice(string.ascii_letters + string.digits) for i in range(8))
+
         return request
 
     @api.model

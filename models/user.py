@@ -94,7 +94,7 @@ class User(models.Model):
         if vals['email'] and vals['email'] != '':
             check_email = self.search([('email', '=', vals['email'])])
             if check_email:
-                return {'success': False, 'message': 'Email đã tồn tại'}
+                return {'success': False, 'message': 'Email đã tồn tại trên hệ thống'}
         return {'success': True}
 
     @api.model
@@ -156,7 +156,7 @@ class User(models.Model):
                                                                                  'product_id': request.product_id.id,
                                                                                  'user_id': request.user_id.id,
                                                                                  'status': 'open'})
-                request.write({'status': 'processed', 'activation_code_id': activation_code.id,
+                request.write({'status': 'confirmed', 'activation_code_id': activation_code.id,
                                'date_payment': fields.Datetime.now()})
                 if not learner_id.referer_id and request.referal_code:
                     referer = self.env['res.users'].search(

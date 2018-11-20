@@ -16,6 +16,8 @@
                             <field name="code"/>
                             <field name="logo_id"/>
                             <field name="logo_url"/>
+                            <field name="intro_video_id"/>
+                            <field name="intro_video_url"/>
                             <field name="metadata"/>
                             <field name="status"/>
                             <field name="create_uid"/>
@@ -35,8 +37,6 @@
             <tree>
                 <field name="name"/>
                 <field name="code"/>
-                <field name="logo_id"/>
-                <field name="logo_url"/>
                 <field name="metadata"/>
                 <field name="status"/>
                 <field name="create_uid"/>
