@@ -69,7 +69,7 @@ class PaymentRequest(models.Model):
         vals['ref'] = ''.join(random.choice(ascii_uppercase + digits) for _ in range(6))
         vals["support_mail"] = company.email
         request = super(PaymentRequest, self).create(vals)
-        self.env.ref(self._module + "." + "payment_request_template").send_mail(request.id, force_send=True)
+        # self.env.ref(self._module + "." + "payment_request_template").send_mail(request.id, force_send=True)
         return request
 
     @api.multi
