@@ -1,34 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="ceo_enrollment_form" model="ir.ui.view">
-        <field name="name">enrollment.form</field>
-        <field name="model">opencourse.course</field>
-        <field name="arch" type="xml">
-            <form>
-                <header>
-                    <button name="open" string="Open" type="object" class="btn-primary" attrs="{'invisible': [('status', '=', 'open')]}"/>
-                    <button name="close" string="Close" type="object" class="btn-primary" attrs="{'invisible': [('status', '=', 'closed')]}"/>
-                </header>
-                <sheet>
-                    <group>
-                        <group>
-                            <field name="name"/>
-                            <field name="code"/>
-                            <field name="logo_id"/>
-                            <field name="logo_url"/>
-                            <field name="intro_video_id"/>
-                            <field name="intro_video_url"/>
-                            <field name="metadata"/>
-                            <field name="status"/>
-                            <field name="create_uid"/>
-                            <field name="create_date"/>
-                            <field name="write_date"/>
-                        </group>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
 
     <record id="ceo_enrollment_tree" model="ir.ui.view">
         <field name="name">enrollment.tree</field>

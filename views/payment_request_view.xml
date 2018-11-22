@@ -25,6 +25,7 @@
                         <field name="phone"/>
                         <field name="city"/>
                         <field name="referal_code"/>
+                        <field name="status"/>
                         <field name="user_id"/>
                         <field name="product_id"/>
                         <field name="amount"/>

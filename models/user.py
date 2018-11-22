@@ -108,7 +108,6 @@ class User(models.Model):
 
     @api.one
     def extends_subscription(self, service):
-        print(service)
         result = self.subscription_id.extend(service)
         if result:
             self.env['opencourse.subscription_history'].create({'subscription_id': self.subscription_id.id,

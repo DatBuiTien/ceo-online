@@ -79,7 +79,7 @@ class PaymentRequest(models.Model):
         request_id = vals['RequestId']
         request = self.env['opencourse.payment_request'].browse(request_id)
         request.status = 'rejected'
-
+        self.env.ref(self._module + "." + "reject_payment_template").send_mail(request.id, force_send=True)
         return request
 
     @api.model
