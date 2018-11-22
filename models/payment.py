@@ -21,6 +21,9 @@ class ActivationCode(models.Model):
     code = fields.Char(string="Code")
     date_use = fields.Datetime(string="Date active")
     product_id = fields.Many2one('product.product', 'Subscription service')
+    service_name = fields.Char(related="product_id.name", string="Name")
+    service_length = fields.Integer(related="product_id.days", string="Length")
+
     user_id = fields.Many2one('res.users', 'User')
     status = fields.Selection(
         [('initial', 'Initial'), ('open', 'Open'), ('used', 'Used')], default="initial")
@@ -49,6 +52,10 @@ class PaymentRequest(models.Model):
     activation_code = fields.Char(related="activation_code_id.code", string="Activation code", readonly=True)
     activation_code_id = fields.Many2one('opencourse.activation_code', 'Activation code')
     product_id = fields.Many2one('product.product', 'Subscription service')
+    service_name = fields.Char(related="product_id.name", string="Service name", readonly=True)
+    service_price = fields.Float(related="product_id.list_price", string="Service price", readonly=True)
+    service_length = fields.Integer(related="product_id.days", string="Service duration", readonly=True)
+
     address = fields.Text(string="Address")
     method = fields.Selection(
         [('home', 'Home'), ('counter', 'Counter'), ('wire', 'Bank Transfer')], default="counter")
