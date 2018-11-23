@@ -74,7 +74,6 @@ class PaymentRequest(models.Model):
 
     @api.multi
     def check_email_payment(self, vals):
-        print(vals)
         if vals['email'] and vals['email'] != '':
             payment = self.env['res.users'].sudo().search([('email', '=', vals['email'])])
             if payment:
@@ -109,7 +108,6 @@ class PaymentRequest(models.Model):
             'password': ''.join(random.choice(string.ascii_letters + string.digits) for i in range(8)),
             'role': 'learner'
         })
-        print(user_vals['password'])
         user = self.env['res.users'].create(user_vals)
         payment_vals = vals
         payment_vals.update({
@@ -129,7 +127,6 @@ class PaymentRequest(models.Model):
             },
             'productId': 1
         }
-        print(vals)
         self.env['res.users'].confirm_payment(vals)
 
     @api.multi
@@ -139,7 +136,6 @@ class PaymentRequest(models.Model):
             'userId': self.user_id.id
         }
         self.env['res.users'].dispense_code(vals)
-        print(True)
 
 
 
