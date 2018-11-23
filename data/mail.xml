@@ -211,6 +211,7 @@
     <li>Bước 3: Nhấp vào link “<span class='blue_text'>Kích hoạt khóa học</span>” trên thanh menu</li>
     <li>Bước 4: Nhập mã kích hoạt vào ô “<span class='blue_text'>Nhập mã kích hoạt</span>”</li>
     <li>Bước 5: Ấn nút “<span class='blue_text'>Kích hoạt ngay</span>” để hoàn thành đăng ký</li>
+    <li>Bước 6: Đăng xuất ra vào lại để học</li>
 </ul>
 <p>Liên hệ Hotline:<span class="highlight"> ${object.user_id.company_id.phone}</span>
 để được tư vấn cũng như giải quyết các thắc mắc của anh/chị về chương trình.
