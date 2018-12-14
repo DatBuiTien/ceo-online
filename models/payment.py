@@ -114,8 +114,6 @@ class PaymentRequest(models.Model):
             'user_id': user.id
         })
 
-
-
     @api.multi
     def confirm_payment(self):
         vals = {
@@ -136,7 +134,3 @@ class PaymentRequest(models.Model):
             'userId': self.user_id.id
         }
         self.env['res.users'].dispense_code(vals)
-
-
-
-

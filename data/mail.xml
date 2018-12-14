@@ -10,8 +10,8 @@
             <field name="body_html">
                 <![CDATA[
             <div>
-                You have been registered to CEO online system of ${object.company_id.name} successfully.
-                <h4>Your account information</h4>
+                Bạn đã đăng ký tới hệ thống CEO online của ${object.company_id.name} thành công.
+                <h4>Thông tin tài khoản của bạn</h4>
                 <ul class="active">
                     <li>Username: ${object.login}</li>
                     <li>Password: ${object.password}</li>
@@ -89,7 +89,7 @@
             </field>
         </record>
         <record id="registration_and_activation_code_template" model="mail.template">
-            <field name="name">Activation code delivery</field>
+            <field name="name">Activation and registration code delivery</field>
             <field name="subject">Activation code notification</field>
             <field name="email_from">info@ceoonline.vn</field>
             <field name="email_to">${object.user_id.email}</field>
@@ -117,7 +117,9 @@
     }
 </style>
 <p>Kính chào Quý Anh/Chị!</p>
-<p>Chào mừng anh/chị đến với Chương trình đào tạo ${object.user_id.company_id.name} - Giám đốc Điều hành chuyên nghiệp.</p>
+<p>Chào mừng anh/chị đến với Chương trình đào tạo ${object.user_id.company_id.name} - Giám đốc Điều hành chuyên nghiệp.
+ Đây là một sản phẩm của Công ty TNHH Công nghệ Giáo dục PTI (PEO) - Một đơn vị thành viên của Tổ chức Giáo dục Đào tạo PTI.
+</p>
 <p>Khi trở thành học viên của chương trình, anh/chị sẽ được nhận thông tin về những chương trình khuyến mãi độc quyền của
  ${object.user_id.company_id.name}, các hoạt động offline và nhiều thông tin hấp dẫn khác liên quan đến chương trình đào tạo.
  </p>
@@ -133,16 +135,16 @@
     <li>Bước 5: Ấn nút “<span class='blue_text'>Kích hoạt ngay</span>” để hoàn thành đăng ký</li>
     <li>Bước 6: Đăng xuất ra vào lại để học</li>
 </ul>
-<p>Liên hệ Hotline:<span class="highlight"> ${object.user_id.company_id.phone}</span>
+<p>Liên hệ Hotline:<span class="highlight"> ${object.user_id.company_id.hotline}</span>
 để được tư vấn cũng như giải quyết các thắc mắc của anh/chị về chương trình.
 </p>
 <hr>
-<h4>VIỆN DOANH NHÂN ASEAN – CHƯƠNG TRÌNH CEO ONLINE</h4>
-<p>HOTLINE: <span class="highlight">${object.user_id.company_id.phone}</span></p>
+<h4>Công ty TNHH Công nghệ Giáo dục PTI (PEO)</h4>
+<p>HOTLINE: <span class="highlight">${object.user_id.company_id.hotline}</span></p>
 <p style="font-weight:600">Email: ${object.user_id.company_id.email}</p>
 <p style="font-weight:600">Website: <a href=${object.user_id.company_id.website}>${object.user_id.company_id.website}</a></p>
-<p style="font-weight:600">Fanpage: <a href=${object.user_id.company_id.fb_link}>${object.user_id.company_id.name}</a></p>
-<p style="font-weight:600">Youtube: <a href=${object.user_id.company_id.yt_link}>${object.user_id.company_id.name}</a></p>
+<p style="font-weight:600">Fanpage: <a href=${object.user_id.company_id.fb_link}>${object.user_id.company_id.fb_link}</a></p>
+<p style="font-weight:600">Youtube: <a href=${object.user_id.company_id.yt_link}>${object.user_id.company_id.yt_link}</a></p>
 <p [innerHTML]="object.user_id.company_id.street"></p>
 ]]>
             </field>
@@ -198,10 +200,12 @@
     }
 </style>
 <p>Kính chào Quý Anh/Chị!</p>
-<p>Chào mừng anh/chị đến với Chương trình đào tạo ${object.user_id.company_id.name} - Giám đốc Điều hành chuyên nghiệp.</p>
+<p>Chào mừng anh/chị đến với Chương trình đào tạo ${object.user_id.company_id.name} - Giám đốc Điều hành chuyên nghiệp.
+Đây là một sản phẩm của Công ty TNHH Công nghệ Giáo dục PTI (PEO) - Một đơn vị thành viên của Tổ chức Giáo dục Đào tạo PTI.
+</p>
 <p>Khi trở thành học viên của chương trình, anh/chị sẽ được nhận thông tin về những chương trình khuyến mãi độc quyền của
  ${object.user_id.company_id.name}, các hoạt động offline và nhiều thông tin hấp dẫn khác liên quan đến chương trình đào tạo.
- </p>
+</p>
 <h4>HÃY VÀO WEBSITE NGAY ĐỂ BẮT ĐẦU LỘ TRÌNH HỌC TẬP</h4>
 <p>Mã kích hoạt: <span class="highlight">${object.code}</span><p>
 <hr>
@@ -214,12 +218,12 @@
     <li>Bước 5: Ấn nút “<span class='blue_text'>Kích hoạt ngay</span>” để hoàn thành đăng ký</li>
     <li>Bước 6: Đăng xuất ra vào lại để học</li>
 </ul>
-<p>Liên hệ Hotline:<span class="highlight"> ${object.user_id.company_id.phone}</span>
+<p>Liên hệ Hotline:<span class="highlight"> ${object.user_id.company_id.hotline}</span>
 để được tư vấn cũng như giải quyết các thắc mắc của anh/chị về chương trình.
 </p>
 <hr>
-<h4>VIỆN DOANH NHÂN ASEAN – CHƯƠNG TRÌNH CEO ONLINE</h4>
-<p>HOTLINE: <span class="highlight">${object.user_id.company_id.phone}</span></p>
+<h4>Công ty TNHH Công nghệ Giáo dục PTI (PEO)</h4>
+<p>HOTLINE: <span class="highlight">${object.user_id.company_id.hotline}</span></p>
 <p style="font-weight:600">Email: ${object.user_id.company_id.email}</p>
 <p style="font-weight:600">Website: <a href=${object.user_id.company_id.website}>${object.user_id.company_id.website}</a></p>
 <p style="font-weight:600">Fanpage: <a href=${object.user_id.company_id.fb_link}>${object.user_id.company_id.fb_link}</a></p>

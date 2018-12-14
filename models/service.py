@@ -3,6 +3,7 @@ from odoo.osv import osv
 from datetime import datetime
 import time
 
+
 class Contact(models.Model):
     _name = 'crm.lead'
     _inherit = 'crm.lead'
@@ -17,7 +18,8 @@ class Contact(models.Model):
         else:
             lead = super(Contact, self).create(vals)
         return lead
-        
+
+
 class Enquiry(models.Model):
     _name = 'opencourse.enquiry'
 
@@ -55,7 +57,7 @@ class NotificationService(osv.AbstractModel):
 
     @api.model
     def sendSingleMail(self, params):
-        email_from = 'info@vietinterview.com'
+        email_from = 'info@ceoonline.vn'
         email_to = params["email_to"]
         email_body = params["body"]
         email_subject = params["subject"]
@@ -66,7 +68,7 @@ class NotificationService(osv.AbstractModel):
 
     @api.model
     def broadcastMail(self, params):
-        email_from = 'info@vietinterview.com'
+        email_from = 'info@ceoonline.vn'
         email_cc = params["recipients"]
         email_body = params["body"]
         email_subject = params["subject"]

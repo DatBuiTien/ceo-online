@@ -58,5 +58,4 @@ class Attachment(models.Model):
                         os.remove(self.store_fname)
                     except Exception as exc:
                         print 'Replace old file error : %s' % self.store_fname, exc
-
         return super(Attachment, self).write(vals)

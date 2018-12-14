@@ -181,7 +181,7 @@ class Course(models.Model):
 
 class CourseSyllabus(models.Model):
     _name = 'opencourse.syllabus'
-    _description = 'Syllabus'
+    _description = 'Syllabus - giao trinh'
 
     complete_unit_by_order = fields.Boolean(name="Complete unit by order", default=False)
     course_id = fields.Many2one('opencourse.course', string='Course')
