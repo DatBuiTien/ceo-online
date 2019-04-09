@@ -84,9 +84,9 @@ class AccountService(osv.AbstractModel):
     @api.model
     def request_reset_password(self, params):
         login = params["login"]
-        token = self.env['opencourse.reset_pass_token'].create({'login': login, 'cloud_id':self.id})
-        self.env.ref(self._module +"."+"reset_password_template").send_mail(token.id,force_send=False)
-        return {'success':True}
+        token = self.env['opencourse.reset_pass_token'].create({'login': login, 'cloud_id': self.id})
+        self.env.ref(self._module + "." + "reset_password_template").send_mail(token.id, force_send=True)
+        return {'success': True}
 
     @api.model
     def apply_reset_password(self,params):

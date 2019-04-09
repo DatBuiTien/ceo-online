@@ -283,7 +283,7 @@
             <field name="name">Opencourse Reset password mail template</field>
             <field name="subject">Opencourse reset password instruction</field>
             <field name="email_from">info@ceoonline.vn</field>
-            <field name="email_to">${object.email}</field>
+            <field name="email_to">${object.email|safe}</field>
             <field name="model_id" ref="model_opencourse_reset_pass_token" />
             <field name="auto_delete" eval="True" />
             <field name="body_html">
