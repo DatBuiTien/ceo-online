@@ -1,28 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="ceo_permission_form" model="ir.ui.view">
-        <field name="name">opencourse.permission.form</field>
-        <field name="model">opencourse.permission</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <group>
-                        <field name="name"/>
-                        <field name="menu_access"/>
-                        <field name="user_group_id"/>
-                        <field name="user_group_name"/>
-                        <field name="user_count"/>
-                    </group>
-                    <notebook>
-                        <page string="User">
-                            <field name="user_ids"/>
-                        </page>
-                    </notebook>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
     <record id="ceo_permission_tree" model="ir.ui.view">
         <field name="name">opencourse.permission.tree</field>
         <field name="model">opencourse.permission</field>
